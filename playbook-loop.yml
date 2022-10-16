@@ -1,0 +1,14 @@
+- name: ansible condition
+  hosts: localhost
+  vars:
+    - user:
+        - name: john
+          uid: 1010
+        - name: joe
+          uid: 1011
+        - name: harry
+          uid: 1012
+  tasks:
+    - name: output all user
+      command: echo "my name is {{item.name}}"
+      with_items: "{{user}}" #can replace with 'loop'

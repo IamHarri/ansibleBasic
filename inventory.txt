@@ -1,0 +1,7 @@
+target1 ansible_host=192.168.56.101 ansible_user=harry
+target2 ansible_host=192.168.1.32 ansible_user=ansadmin
+[localhost]
+target1
+
+[web-server]
+target2

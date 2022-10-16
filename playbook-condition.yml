@@ -1,0 +1,15 @@
+- 
+  name: ansible condition
+  hosts: localhost
+  vars:
+    ages: 25 
+  tasks:
+    - name: show variable
+      command: echo "the varible ages is define as {{ ages}}"
+    - name: define type of person
+      when: ages  < 18
+      command: echo 'I am a child'
+    - name: 'define type of person'
+      command: echo 'I am a adult'
+      when: ages >= 18
+    
