@@ -1,5 +1,17 @@
+
+# ANSIBLE
+## client machine
+-   create user with command: adduser ansadmin
+-   visudo: ansadmin ALL=(ALL) NOPASSWD= ALL
+-   config ssh as password for this machine
+## host machine (host ansible)
+-   the same as client ( create user ansadmin)
+-   add client Ip inside this path: /etc/ansible/hosts ( this file will store all client ip)
+-   copy master ssh key to client server for authentication
+-   Run this commnand `ssh-copy-id {client IP} inside the user home directory ( run ssh-keygen before it)
+-   after this key will be placed in the client machine
+-   Run: `ansible all -m ping` to test the connection
 ```sh
-# Ansible
 ansible <hosts> -a <command>
 ansible all -a "/sbin/reboot"
 ansible <hosts> -m <module>
@@ -70,3 +82,16 @@ reuse the task
 can be share with other user (call as galaxy)
 run this command to init a built-in role: ansible-galaxy init {role_name ex: msql}
 ```
+# statergy
+```text
+default: linear
+    move together all task
+free: no waiting
+serial: a serial  of agent will be run as a time
+```
+# security
+-   ansible-vault encrypt {{filename}}
+-   run ansible-playbook with this option --ask-vault-pass
+-   also --vault-password-file ~./vault_pass.txt
+
+NOTE: command: ansible-playbook playbook-docker.yml -i inventory.ini --vault-password-file ~/vaultpass.txt

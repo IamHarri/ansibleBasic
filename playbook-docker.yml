@@ -4,6 +4,13 @@
   become: true
   vars:
     dockerPath: "/home/ubuntu/data/"
+    dockerPass: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      39336637353464626537373832626131313065383336306132346238623336373366323630356234
+      6633646132323561313531656134373166313639306336310a306166663936343862633163363036
+      61373261303563633666613831333965396230343465346132316266623237623865396336653834
+      3536656631353163380a616534373633333761663038633666393265303939393830663634346436
+      3037
   # vars_prompt:
   #   - name: dockerPass
   #     prompt: Enter password
@@ -40,21 +47,17 @@
         update_cache: true
 
     - name: Copy file
-      # become: yes
       ansible.builtin.copy:
-        src: "{{playbook_dir}}/index.html" 
+        src: '{{playbook_dir}}/{{item}}'
         dest: "{{dockerPath}}"
-
-    - name: Copy dockerfile
-      # become: yes
-      ansible.builtin.copy:
-        src: "{{playbook_dir}}/Dockerfile"
-        dest: "{{dockerPath}}" 
-
-    # - name: Log into DockerHub
-    #   docker_login:
-    #     username: longlc3 
-    #     password: '{{dockerPass}}'
+      with_items:
+        - index.html
+        - Dockerfile
+        
+    - name: Log into DockerHub
+      docker_login:
+        username: longlc3 
+        password: '{{dockerPass}}'
 
     - name: Build an image and push it to a private repo
       docker_image:
