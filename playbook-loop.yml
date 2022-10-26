@@ -8,7 +8,13 @@
           uid: 1011
         - name: harry
           uid: 1012
+    - os: ubuntu
+
   tasks:
     - name: output all user
-      command: echo "my name is {{item.name}}"
+      command: >
+        echo "my name is {{item.name}}"
+        echo "my user uid is {{item.uid}} "
       with_items: "{{user}}" #can replace with 'loop'
+    - name: show age
+      command: echo "my os system is {{os}}"

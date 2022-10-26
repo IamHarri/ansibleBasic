@@ -1,15 +1,14 @@
 -
   name: Test connectivity to target server
-  hosts: target1
+  hosts: all
   tasks:
   - name: Test connection
     ping:
 
   # - name: Copy file with owner and permissions
   #   # become: yes
-  #   # become_user: root
   #   ansible.builtin.copy:
-  #     src: copy-file.txt
-  #     dest: /home/harry/test-project/introduction/tmp/copy-file.txt
+  #     src: index.html
+  #     dest: /tmp
   # - name: delete file
-  #   shell: rm -rf /home/harry/test-project/introduction/tmp/
+  #   shell: rm -rf /tmp/index.html

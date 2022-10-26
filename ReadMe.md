@@ -5,6 +5,7 @@ ansible all -a "/sbin/reboot"
 ansible <hosts> -m <module>
 ansible target1 -m ping
 -------------------------
+parameters link: https://docs.ansible.com/ansible/2.3/intro_inventory.html
 # Ansible playbook
 
 
