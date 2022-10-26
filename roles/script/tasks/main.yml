@@ -1,0 +1,9 @@
+---
+- name: install mariadb & firewall
+  script:  ../file/data.sh
+- name: creat user
+  script:  ../file/db-user.sh
+  ignore_errors: yes
+- name: Install httpd
+  become: yes
+  script:  ../file/httpd.sh

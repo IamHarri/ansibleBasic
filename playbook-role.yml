@@ -1,0 +1,12 @@
+-
+  name: Install and configure Mysql
+  hosts: target2
+  roles:
+    - role: script
+    # - role: mariadb
+  tasks:
+    - name: Copy data
+      become: yes
+      copy:
+        src: /home/harry/test-project/introduction/app-ecommerce/
+        dest: /var/www/html/

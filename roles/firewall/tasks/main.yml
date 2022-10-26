@@ -1,0 +1,5 @@
+---
+- name: Install Firewall
+  firewalld:
+    service: http
+    status: enabled
